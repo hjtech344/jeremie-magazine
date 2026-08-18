@@ -25,7 +25,8 @@ const elements = {
     newsletterMessage: document.querySelector("#newsletterMessage"),
     hamburgerMenu: document.querySelector(".hamburger-menu"),
     mainMenu: document.querySelector("#mainMenu"),
-    menuBackdrop: document.querySelector("#menuBackdrop")
+    menuBackdrop: document.querySelector("#menuBackdrop"),
+    searchToggle: document.querySelector("#searchToggle")
 };
 
 // État de l'application
@@ -145,6 +146,40 @@ function setupMobileMenu() {
         if (e.key === "Escape" && elements.mainMenu.classList.contains("is-open")) {
             closeMenu();
             elements.hamburgerMenu.focus();
+        }
+    });
+}
+
+// Gestion de l'ouverture de la recherche sur mobile
+function setupMobileSearch() {
+    if (!elements.searchToggle || !elements.searchForm || !elements.searchInput) {
+        return;
+    }
+
+    const closeSearch = () => {
+        elements.searchForm.classList.remove("is-open");
+        elements.searchToggle.classList.remove("is-open");
+        elements.searchToggle.setAttribute("aria-expanded", "false");
+        elements.searchToggle.setAttribute("aria-label", "Ouvrir la recherche");
+    };
+
+    elements.searchToggle.addEventListener("click", () => {
+        const isOpen = elements.searchForm.classList.toggle("is-open");
+        elements.searchToggle.classList.toggle("is-open", isOpen);
+        elements.searchToggle.setAttribute("aria-expanded", String(isOpen));
+        elements.searchToggle.setAttribute("aria-label", isOpen ? "Fermer la recherche" : "Ouvrir la recherche");
+
+        if (isOpen) {
+            elements.searchInput.focus();
+        }
+    });
+
+    elements.searchForm.addEventListener("submit", closeSearch);
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && elements.searchForm.classList.contains("is-open")) {
+            closeSearch();
+            elements.searchToggle.focus();
         }
     });
 }
@@ -375,6 +410,7 @@ function handleNewsletter(event) {
 // Initialisation de l'application
 function init() {
     setupMobileMenu();
+    setupMobileSearch();
     setTodayDate();
     elements.apiKeyInput.value = appState.apiKey;
     elements.categoryTabs.addEventListener("click", handleCategoryClick);
