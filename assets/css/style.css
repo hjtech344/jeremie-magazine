@@ -147,7 +147,7 @@ button {
 }
 
 .brand {
-    flex: 0 0 185px;
+    flex: 0 0 220px;
 }
 
 .header-banner {
@@ -232,6 +232,8 @@ button {
 }
 
 .main-menu {
+    align-items: center;
+    display: flex;
     flex: 1;
 }
 
@@ -298,6 +300,30 @@ button {
     transition: color 0.2s ease, background-color 0.2s ease;
 }
 
+.main-menu .search-toggle {
+    display: none;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.search-close-icon {
+    display: none;
+}
+
+.search-toggle.is-open .search-open-icon {
+    display: none;
+}
+
+.search-toggle.is-open .search-close-icon {
+    display: inline-block;
+}
+
+.menu-search {
+    align-items: center;
+    display: flex;
+    margin-left: auto;
+}
+
 .search-toggle:hover,
 .search-toggle.is-open {
     background: rgba(252, 63, 0, 0.08);
@@ -352,16 +378,65 @@ button {
     .nav-row {
         min-height: 56px;
         gap: 10px;
+        flex-direction: row;
         padding: 8px 0;
+        position: relative;
     }
 
     .mobile-logo {
         display: block;
+        width: 70px;
     }
 
     .hamburger-menu {
         display: flex;
+        margin-left: 0;
+        margin-left: auto;
+        margin-right: 0;
         z-index: 31;
+    }
+
+    .menu-search {
+        border-top: 1px solid var(--line);
+        gap: 10px;
+        margin: 8px 0 0;
+        padding: 12px 0 0;
+        width: 100%;
+    }
+
+    .main-menu .search-toggle {
+        border-radius: 0;
+        display: flex;
+        height: 40px;
+        margin: 0;
+        padding: 0;
+        width: 40px;
+    }
+
+    .menu-search .search-form {
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        display: none;
+        flex: 1;
+        min-width: 0;
+        opacity: 0;
+        padding: 0;
+        pointer-events: none;
+        position: static;
+        transform: none;
+        width: auto;
+    }
+
+    .menu-search .search-form.is-open {
+        display: flex;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .menu-search .search-form input,
+    .menu-search .search-form button {
+        height: 42px;
     }
 
     .main-menu {
@@ -473,11 +548,6 @@ button {
         height: 42px;
     }
 
-    .search-toggle {
-        display: flex;
-        flex-shrink: 0;
-        margin-left: auto;
-    }
 }
 
 .trending-bar {
@@ -575,6 +645,8 @@ button {
     bottom: 0;
     color: var(--white);
     left: 0;
+    max-height: calc(100% - 32px);
+    overflow: hidden;
     padding: 34px;
     position: absolute;
     right: 0;
@@ -599,12 +671,24 @@ button {
     line-height: 1.05;
     margin-bottom: 13px;
     max-width: 760px;
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }
 
 .featured-content p {
     color: #f1f1f1;
     font-size: 15px;
     max-width: 720px;
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }
 
 .article-meta {
@@ -1104,9 +1188,18 @@ button {
     .nav-row {
         align-items: center;
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
         min-height: 72px;
         padding: 10px 0;
+    }
+
+    .search-form {
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: calc(100% + 10px);
+        width: auto;
     }
 
     .sticky-logo {
@@ -1123,10 +1216,12 @@ button {
     }
 
     .main-menu {
+        align-items: stretch;
         background: rgba(255, 255, 255, 0.98);
         border: 1px solid rgba(11, 28, 57, 0.06);
         border-radius: 18px;
         box-shadow: var(--shadow);
+        flex-direction: column;
         left: 0;
         max-height: 0;
         opacity: 0;
@@ -1144,7 +1239,7 @@ button {
     .main-menu.is-open {
         max-height: 340px;
         opacity: 1;
-        padding: 12px;
+        padding: 14px;
         pointer-events: auto;
     }
 
@@ -1152,7 +1247,7 @@ button {
         align-items: stretch;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 6px;
     }
 
     .main-menu li {
@@ -1166,7 +1261,7 @@ button {
         color: var(--ink);
         font-size: 0.92rem;
         font-weight: 600;
-        padding: 12px 14px;
+        padding: 11px 14px;
         text-align: left;
         transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
@@ -1201,11 +1296,20 @@ button {
     }
 
     .featured-content {
+        max-height: calc(100% - 24px);
         padding: 24px;
     }
 
     .featured-content h1 {
         font-size: 2rem;
+        line-clamp: 4;
+        -webkit-line-clamp: 4;
+    }
+
+    .featured-content p {
+        font-size: 14px;
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
     }
 
     .top-stack,
