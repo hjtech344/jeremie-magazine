@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jérémie Magazine | Actualités</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://kit.fontawesome.com/664e2ee4c9.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-top">
+            <div class="container header-top-wrapper">
+                <ul class="header-meta">
+                    <li>
+                        <img src="./assets/img/icon/header_icon1.png" alt="">
+                        <span>34ºc, Sunny</span>
+                    </li>
+                    <li>
+                        <img src="./assets/img/icon/header_icon2.png" alt="">
+                        <span id="todayDate">Jeudi 13 août 2026</span>
+                    </li>
+                </ul>
+
+                <ul class="header-social" aria-label="Réseaux sociaux">
+                    <li><a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a></li>
+                    <li><a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="middle-header">
+            <div class="container brand-row">
+                <a class="brand" href="./index.html" aria-label="Accueil Jérémie Magazine">
+                    <img src="./assets/img/logo/logo-jeremie-magazine.png" alt="Jérémie Magazine">
+                </a>
+                <img class="header-banner" src="./assets/img/hero/banner-3.png" alt="Bannière Jérémie Magazine">
+            </div>
+        </div>
+
+        <div class="bottom-header">
+            <div class="container nav-row">
+                <a class="mobile-logo" href="./index.html" aria-label="Accueil">
+                    <img src="./assets/img/logo/logo-jeremie-magazine.png" alt="Jérémie Magazine">
+                </a>
+
+                <nav class="main-menu" id="mainMenu" aria-label="Navigation principale" role="navigation">
+                    <ul>
+                        <li><a href="./index.html" class="active">Home</a></li>
+                        <li><a href="#articles">Category</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#latest">Latest News</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <button class="hamburger-menu" type="button" aria-label="Menu de navigation" aria-expanded="false" aria-controls="mainMenu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+
+                <div class="menu-backdrop" id="menuBackdrop" aria-hidden="true"></div>
+
+                <form class="search-form" id="searchForm" role="search">
+                    <label class="sr-only" for="searchInput">Rechercher une actualité</label>
+                    <input id="searchInput" name="search" type="search" placeholder="Search">
+                    <button type="submit" aria-label="Rechercher">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="trending-bar">
+            <div class="container trending-wrapper">
+                <strong>Trending now</strong>
+                <p id="trendingText">Chargement des derniers titres...</p>
+            </div>
+        </section>
+
+        <section class="hero-news" id="latest">
+            <div class="container hero-grid">
+                <article class="featured-card" id="featuredArticle" aria-live="polite">
+                    <div class="skeleton image-skeleton"></div>
+                    <div class="featured-content">
+                        <span class="category-tag">News</span>
+                        <h1>Chargement des actualités...</h1>
+                        <p>Les derniers articles apparaîtront ici dans quelques secondes.</p>
+                    </div>
+                </article>
+
+                <div class="top-stack" id="topStack" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <section class="content-area" id="articles">
+            <div class="container content-grid">
+                <div class="main-column">
+                    <div class="section-heading">
+                        <h2>Whats New</h2>
+                        <div class="category-tabs" id="categoryTabs" aria-label="Catégories d'actualités">
+                            <button class="active" type="button" data-section="all">All</button>
+                            <button type="button" data-section="world">World</button>
+                            <button type="button" data-section="technology">Technology</button>
+                            <button type="button" data-section="sport">Sports</button>
+                            <button type="button" data-section="business">Business</button>
+                            <button type="button" data-section="culture">Culture</button>
+                        </div>
+                    </div>
+
+                    <div class="status-panel" id="statusPanel" hidden></div>
+                    <div class="articles-grid" id="articlesGrid" aria-live="polite"></div>
+                </div>
+
+                <aside class="sidebar" aria-label="Informations complémentaires">
+                    <section class="sidebar-block">
+                        <h3>Weekly Top News</h3>
+                        <div class="weekly-list" id="weeklyList"></div>
+                    </section>
+
+                    <section class="sidebar-block api-card">
+                        <h3>API News</h3>
+                        <p>Cette app utilise The Guardian Open Platform. Tu peux garder la clé de test ou ajouter ta propre clé gratuite.</p>
+                        <form id="apiKeyForm" class="api-key-form">
+                            <label for="apiKeyInput">Clé API</label>
+                            <div class="api-key-row">
+                                <input id="apiKeyInput" type="text" placeholder="test">
+                                <button type="submit">Save</button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <section class="sidebar-block newsletter" id="contact">
+                        <h3>Newsletter</h3>
+                        <p>Recevez une sélection rapide des titres les plus importants.</p>
+                        <form id="newsletterForm">
+                            <label class="sr-only" for="emailInput">Adresse email</label>
+                            <input id="emailInput" type="email" placeholder="Email address">
+                            <button type="submit">Subscribe</button>
+                        </form>
+                        <small id="newsletterMessage"></small>
+                    </section>
+                </aside>
+            </div>
+        </section>
+
+        <section class="about-band" id="about">
+            <div class="container about-content">
+                <div class="about-layout">
+                    <div class="about-copy">
+                        <span>Jérémie Magazine</span>
+                        <h2>Une petite application de news claire, rapide et prête à personnaliser en utilisant ta clé API.</h2>
+                        <p>Recherche, catégories, articles récents et fallback local sont déjà connectés.</p>
+                    </div>
+
+                    <div class="partner-card partner-card-newsroom" aria-label="Partenariat avec Explicite Net">
+                        <div class="partner-topline">
+                            <span class="partner-label">Média partenaire</span>
+                            <a href="https://explicitenet.com/" target="_blank" rel="noreferrer">Voir le média</a>
+                        </div>
+
+                        <div class="partner-brand">
+                            <img src="https://explicitenet.com/wp-content/uploads/2025/06/icon_web_site-300x300.png" alt="Logo Explicite Net">
+                            <div>
+                                <strong>Explicite Net</strong>
+                                <p>Pour suivre l’actualité locale, régionale et les sujets qui façonnent Jérémie, découvrez le regard indépendant de ce média.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div style="background: white;">
+                <img src="./assets/img/logo/logo-jeremie-magazine.png" alt="Jérémie Magazine">
+            </div>
+            <p> 
+                © 2026 Jérémie Magazine. Tous droits sont réservés. <br />
+                Réaliser à jérémie avec ❤️ par Herveson Jeudy.
+            </p>
+            <p>Actualités propulsées par The Guardian Open Platform.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>
